@@ -1,0 +1,70 @@
+{
+  "rpc": "https://testnet-rpc.monad.xyz",
+  "blockNumber": "70451662",
+  "blockHash": "0x34252c4ad6dc78d1020e135e016268c32337d73950347739215b54832c19ec92",
+  "chainTime": "1791824459",
+  "results": [
+    {
+      "address": "0x17864b27b439AADd045C494d72147E6B99CBeC63",
+      "accounting": {
+        "fundedAmount": "1000000000",
+        "unallocated": "0",
+        "tenantCredit": "0",
+        "landlordCredit": "0",
+        "tenantWithdrawn": "1000000000",
+        "landlordWithdrawn": "0",
+        "revision": "4"
+      },
+      "activeCase": {
+        "caseId": "0",
+        "caseType": 0,
+        "openedAt": "0",
+        "disputedAmount": "0",
+        "evidenceDeadline": "0",
+        "primaryDeadline": "0",
+        "challengeDeadline": "0",
+        "fallbackStartAt": "0",
+        "fallbackDeadline": "0",
+        "timeoutAt": "0",
+        "proposalAt": "0",
+        "proposalHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "challengeCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "decisionHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "phase": 0,
+        "exists": false,
+        "checkoutApproved": false
+      }
+    },
+    {
+      "address": "0x3a174209a824fc8b6b96472d6b107378ffcc7da6",
+      "accounting": {
+        "fundedAmount": "1000000000",
+        "unallocated": "0",
+        "tenantCredit": "0",
+        "landlordCredit": "0",
+        "tenantWithdrawn": "900000000",
+        "landlordWithdrawn": "100000000",
+        "revision": "12"
+      },
+      "activeCase": {
+        "caseId": "1",
+        "caseType": 2,
+        "openedAt": "1791820707",
+        "disputedAmount": "200000000",
+        "evidenceDeadline": "1791821007",
+        "primaryDeadline": "1791821607",
+        "challengeDeadline": "0",
+        "fallbackStartAt": "1791821607",
+        "fallbackDeadline": "1791822507",
+        "timeoutAt": "1791822807",
+        "proposalAt": "0",
+        "proposalHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "challengeCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "decisionHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "phase": 5,
+        "exists": true,
+        "checkoutApproved": false
+      }
+    }
+  ]
+}

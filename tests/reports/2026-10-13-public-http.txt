@@ -1,0 +1,1 @@
+PASS HTTP: health, temporary-account SIWE, cross-lease ACL, private upload, automatic export queue, unchanged ZIP fixture, bound download and logout. Public Monad testnet API only; no wallet UI or chain transactions. Fictional draft/file/export records retained.

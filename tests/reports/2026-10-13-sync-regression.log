@@ -1,0 +1,28 @@
+✔ live ABI encodes precise acknowledgement, funding and immutable proposal ID (8.942066ms)
+✔ live accounting rejects lost money; stale, self and expired proposals cannot be confirmed (0.602898ms)
+✔ real signing adapter restores only the original address and cancelled sessions never escape (109.908045ms)
+✔ missing or unsafe testnet configuration fails closed (0.707672ms)
+✔ passkey recovery needs no address, credential ID or browser storage (7.806975ms)
+✔ optional address mismatch, invalid domain and cancelled recovery fail closed (2.061365ms)
+✔ creation without PRF output uses an explicit second authentication ceremony (5.131716ms)
+✔ ambiguous API retries reuse the same idempotency key; success clears it (5.008074ms)
+✔ plain-text upstream failure preserves HTTP status and idempotency key for retry (1.188831ms)
+✔ escrow adapter respects Monad 100-block limit and rejects an incomplete history (140.499233ms)
+✔ real local EVM: service, lease, funding, exact evidence acknowledgement, claims, fallback ACL, export and sponsor transfer (5799.879273ms)
+ℹ Executed real local EVM transactions; no public testnet deployment is claimed.
+✔ IT-03 real EVM factory discovery, ABI decoding, attachment and duplicate replay (4023.748153ms)
+✔ IT-04 real EVM reorg invalidates events, projection and unsigned tasks atomically (2694.967733ms)
+✔ IT-05 real process restart reconciles a persisted broadcast without signing twice (3638.671152ms)
+✔ IT-06 RPC fault and wrong fallback never overwrite confirmed balances or sign (2243.801457ms)
+✔ Worker advances public deadlines, respects boundary and manual progress, and stops gracefully (2399.026172ms)
+✔ Worker dispatches service timeout and final allocation separately (3510.135837ms)
+✔ Worker finalizes an unchallenged primary award only at its fixed deadline (2945.48302ms)
+✔ Worker hard-end expiry preserves accepted credit and cancels overdue ordinary actions (2214.387696ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24301.961858
