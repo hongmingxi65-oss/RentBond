@@ -89,3 +89,14 @@ test('ambiguous API retries reuse the same idempotency key; success clears it', 
   await api('/api/leases/drafts', { title: 'example' }); await api('/api/leases/drafts', { title: 'example' });
   assert.equal(keys[0], keys[1]); assert.notEqual(keys[1], keys[2]); clearRequests();
 });
+
+test('plain-text upstream failure preserves HTTP status and idempotency key for retry', async () => {
+  const { api, ApiError, clearRequests } = await import('./client.ts');
+  const original=globalThis.fetch; const keys=[];
+  clearRequests();
+  globalThis.fetch=async (_url,options)=>{ keys.push(options.headers['Idempotency-Key']); return new Response('An error occurred', {status:502}); };
+  try {
+    for(let i=0;i<2;i++) await assert.rejects(api('/api/test',{value:1}),e=>e instanceof ApiError && e.status===502 && /HTTP 502/.test(e.message));
+    assert.equal(keys[0],keys[1]);
+  } finally { globalThis.fetch=original; clearRequests(); }
+});

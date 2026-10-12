@@ -328,13 +328,22 @@ export function createChain(config: Config): Chain {
     },
     async events(address, fromBlock, toBlock) {
       const { client } = await connected();
-      const logs = await client.getContractEvents({
+      // Escrow reconciliation uses the same RPC limit as factory discovery.
+      // Do not return a partial batch: callers advance an atomic checkpoint.
+      const logs = [];
+      const size = config.chainId === 10143 ? 100n : 1000n;
+      const from = BigInt(fromBlock), to = BigInt(toBlock);
+      requireThat(from >= 0n && to >= from, 422, 'INVALID_LOG_RANGE', 'Invalid event block range.');
+      for (let start = from; start <= to; start += size) {
+        const end = start + size - 1n < to ? start + size - 1n : to;
+        logs.push(...await client.getContractEvents({
         address: address as Address,
         abi: escrowAbi,
-        fromBlock: BigInt(fromBlock),
-        toBlock: BigInt(toBlock),
+        fromBlock: start,
+        toBlock: end,
         strict: true,
-      });
+        }));
+      }
       return json<Row[]>(logs);
     },
     async creation(hash) {

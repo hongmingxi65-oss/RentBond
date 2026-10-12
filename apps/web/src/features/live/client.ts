@@ -33,7 +33,13 @@ export async function api(path: string, body?: unknown, method = body === undefi
   const commandKey = key ?? retryKeys.get(fingerprint) ?? crypto.randomUUID();
   if (method === 'POST') retryKeys.set(fingerprint, commandKey);
   const response = await fetch(path, { method, credentials: 'same-origin', cache: 'no-store', headers: body === undefined ? {} : { 'Content-Type': 'application/json', ...(method === 'POST' ? { 'Idempotency-Key': commandKey } : {}) }, body: body === undefined ? undefined : JSON.stringify(body) });
-  const value = await response.json();
+  let value: Data;
+  try { value = await response.json(); }
+  catch {
+    // Proxies can return plain text/HTML. Keep status and retry identity;
+    // never render upstream HTML or mistake this for a successful mutation.
+    throw new ApiError(response.status, `HTTP ${response.status}: The service returned an unreadable response. Refresh to check the current state before retrying.`);
+  }
   if (response.ok || response.status < 500) retryKeys.delete(fingerprint);
   if (!response.ok) throw new ApiError(response.status, `${value.error?.code ?? response.status}: ${value.error?.message ?? 'Request failed'}`);
   return value;
